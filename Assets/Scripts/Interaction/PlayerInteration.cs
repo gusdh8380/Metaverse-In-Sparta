@@ -32,7 +32,7 @@ public class PlayerInteration : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) )
         {
             animator.SetTrigger("Isinteract");
-            //currentTarget.GetComponent<IInteraction>()?.Interact();
+            currentTarget.GetComponent<IInteraction>()?.Interact();
         }
     }
 }
