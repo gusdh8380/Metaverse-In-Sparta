@@ -9,6 +9,7 @@ public class PlayerInteration : MonoBehaviour
     //f키를 통해 상호작용
 
     private Collider2D currentTarget;
+    public Animator animator;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,9 +29,10 @@ public class PlayerInteration : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && currentTarget != null)
+        if (Input.GetKeyDown(KeyCode.F) )
         {
-            currentTarget.GetComponent<IInteraction>()?.Interact();
+            animator.SetTrigger("Isinteract");
+            //currentTarget.GetComponent<IInteraction>()?.Interact();
         }
     }
 }
