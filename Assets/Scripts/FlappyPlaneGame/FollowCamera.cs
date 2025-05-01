@@ -8,7 +8,7 @@ public class FollowCamera : MonoBehaviour
     public Transform target;
     float offsetX;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         if (target == null) return;

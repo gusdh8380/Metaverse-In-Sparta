@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -18,13 +19,13 @@ public class Player : MonoBehaviour
 
     public bool godMode = false;
 
-    GameManager gamemanager;
+    MiniGameManager gamemanager;
 
+   
 
-    // Start is called before the first frame update
     void Start()
     {
-        gamemanager = GameManager.Instance;
+        gamemanager = MiniGameManager.Instance;
 
         animator = GetComponentInChildren<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -36,18 +37,18 @@ public class Player : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (isDead)
         {
             if(deathCooldown <= 0f)
             {
-                //게임 재시작
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) 
-                { 
-                    gamemanager.RestartGame();
-                }
+                ////게임 재시작
+                //if (Input.GetKeyDown(KeyCode.Space)) 
+                //{ 
+                //    gamemanager.RestartGame();
+                //}
             }
             else
             {

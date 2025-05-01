@@ -2,36 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI restartText;
+    public Button restart;
+    public Button exitbtn;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (restartText == null)
+        if (restart == null)
             Debug.LogError("restart text id null");
 
         if (scoreText == null)
             Debug.LogError("score text is  null");
+        if (exitbtn == null)
+            Debug.LogError("exit btn is null");
 
-        restartText.gameObject.SetActive(false);
+        restart.gameObject.SetActive(false);
+        exitbtn.gameObject.SetActive(false);
     }
 
     public void setRestart()
     {
-        restartText.gameObject.SetActive(true);
+        restart.gameObject.SetActive(true);
     }
     public  void UpdateScore(int score)
     {
         scoreText.text = score.ToString();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void setExit()
     {
-        
+        exitbtn.gameObject.SetActive(true); 
     }
 }

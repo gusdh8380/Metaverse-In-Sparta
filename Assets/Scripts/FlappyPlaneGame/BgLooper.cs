@@ -9,7 +9,7 @@ public class BgLooper : MonoBehaviour
     public int obstacleCount = 0;
     public Vector3 obstacleLastPosition = Vector3.zero;
 
-    
+
     void Start()
     {
         Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>();

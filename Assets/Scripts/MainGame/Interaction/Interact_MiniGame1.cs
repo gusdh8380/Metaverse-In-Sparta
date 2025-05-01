@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Interact_MiniGame1 : MonoBehaviour, IInteraction
 {
-   public void Interact()
+
+    public void Interact()
     {
-        SceneManager.LoadScene("Flappy Plane Scene");
+        MasterGameManager.Instance.Pause();
+        MasterGameManager.Instance.LoadMiniGame();
     }
+
+   
 }
