@@ -11,9 +11,13 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
 
     private int currentScore = 0;
 
+    private int BsetScore;
+
     UIManager uiManager;
     public UIManager UIManager { get { return uiManager; } }
 
+
+    
 
     public void Awake()
     {
@@ -23,7 +27,11 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
 
     public void Start()
     {
-        uiManager.UpdateScore(0);
+        int bestScore = MasterGameManager.Instance.SetBestScore("FlappyPlane");
+        BsetScore = bestScore;
+
+        uiManager.UpdateScore(0, BsetScore);
+       
     }
     public void GameOver()
     {
@@ -39,18 +47,26 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
 
     public void Exit()
     {
-        //마스터게임 매니저에게 점수 데이터 전달
-        MasterGameManager.Instance.ReceiveMiniGameScore("FlappyPlane", currentScore);
+        
         MasterGameManager.Instance.Resume();
         SceneManager.UnloadSceneAsync("Flappy Plane Scene");
+
     }
 
     public void AddScore(int score)
     {
         currentScore += score;
         Debug.Log("Score : " + currentScore);
-        uiManager.UpdateScore(currentScore);
 
+        if (currentScore > BsetScore)
+        {
+            BsetScore = currentScore;
+            //마스터게임 매니저에게 점수 데이터 전달
+            MasterGameManager.Instance.ReceiveMiniGameScore("FlappyPlane", BsetScore);
+        }
+        uiManager.UpdateScore(currentScore, BsetScore);
+
+        
     }
 
 

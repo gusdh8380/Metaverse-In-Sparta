@@ -10,11 +10,14 @@ public class UIManager : MonoBehaviour
     public Button restart;
     public Button exitbtn;
 
+    public TextMeshProUGUI bestScoreText;
+    public TextMeshProUGUI bestscore;
+
     // Start is called before the first frame update
     void Start()
     {
         if (restart == null)
-            Debug.LogError("restart text id null");
+            Debug.LogError("restart text is null");
 
         if (scoreText == null)
             Debug.LogError("score text is  null");
@@ -23,15 +26,18 @@ public class UIManager : MonoBehaviour
 
         restart.gameObject.SetActive(false);
         exitbtn.gameObject.SetActive(false);
+       
     }
 
     public void setRestart()
     {
         restart.gameObject.SetActive(true);
     }
-    public  void UpdateScore(int score)
+    public  void UpdateScore(int score, int best)
     {
         scoreText.text = score.ToString();
+        bestscore.text = best.ToString();
+
     }
     public void setExit()
     {

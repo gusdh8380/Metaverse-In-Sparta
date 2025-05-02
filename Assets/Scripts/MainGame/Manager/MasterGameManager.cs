@@ -7,12 +7,13 @@ public class MasterGameManager : MonoBehaviour
 {
     public static MasterGameManager Instance;
 
-    private Dictionary<string, int> miniGameScores = new Dictionary<string, int>();
+    public Dictionary<string, int> miniGameScores = new Dictionary<string, int>();
 
-  
+    private UIManager_Main ui;
 
     private GameObject[] all;
 
+  
     private void Awake()
     {
         if (Instance == null)
@@ -38,11 +39,18 @@ public class MasterGameManager : MonoBehaviour
     {
         miniGameScores[gameId] = score;
         Debug.Log($"[{gameId}] 점수 수신: {score}");
+        Debug.Log(MasterGameManager.Instance.miniGameScores["FlappyPlane"]);
     }
 
     public int GetMiniGameScore(string gameId)
     {
         return miniGameScores.TryGetValue(gameId, out int score) ? score : 0;
+    }
+    public int SetBestScore(string gameId)
+    {
+        return miniGameScores.TryGetValue(gameId, out var score)
+               ? score
+               : 0;
     }
     public void Resume()
     {
@@ -78,4 +86,5 @@ public class MasterGameManager : MonoBehaviour
         SceneManager.SetActiveScene(miniScene);
     }
 
+   
 }
