@@ -14,7 +14,7 @@ public class MasterGameManager : MonoBehaviour
  
     public string[] MiniGameSceneName = { "Flappy Plane Scene", "BoxStack Scene" };
 
-    
+    public bool gameStart = false;
 
 
     private void Awake()

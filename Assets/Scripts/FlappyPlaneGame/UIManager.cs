@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI bestScoreText;
     public TextMeshProUGUI bestscore;
 
+    public GameObject startUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,17 @@ public class UIManager : MonoBehaviour
         exitbtn.gameObject.SetActive(false);
        
     }
+    public void ShowStartUi()
+    {
+        startUI.gameObject.SetActive(true);
+    }
 
+    public void HideStartUi()
+    {
+        startUI.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(true);
+        bestScoreText.gameObject.SetActive(true);
+    }
     public void setRestart()
     {
         restart.gameObject.SetActive(true);

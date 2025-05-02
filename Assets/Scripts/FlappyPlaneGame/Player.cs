@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!MiniGameManager.Instance.gameStarted)
+            return; // 게임 시작 전 입력 무시
         if (isDead)
         {
             if(deathCooldown <= 0f)
@@ -66,7 +68,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isDead) return;
+        if (!MiniGameManager.Instance.gameStarted)
+            return; // 게임 시작 전 입력 무시
+
+        if (isDead) return;
 
         Vector3 velocity = _rigidbody.velocity;
         velocity.x = forwardSpeed;

@@ -12,7 +12,7 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
     private int currentScore = 0;
 
     private int BsetScore;
-
+    public bool gameStarted = MasterGameManager.Instance.gameStart;
     UIManager uiManager;
     public UIManager UIManager { get { return uiManager; } }
 
@@ -24,13 +24,36 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
 
     public void Start()
     {
+        uiManager.ShowStartUi();
+        Time.timeScale = 0f;
         int bestScore = MasterGameManager.Instance.SetBestScore("FlappyPlane");
         BsetScore = bestScore;
 
         uiManager.UpdateScore(0, BsetScore);
     }
+    void Update()
+    {
+        if (!gameStarted)
+        {
+            // 클릭 또는 스페이스바로 시작
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+                BeginGame();
+            return;
+        }
+
+       
+    }
+    public void BeginGame()
+    {
+        gameStarted = true;
+        Time.timeScale = 1f;
+        uiManager.HideStartUi();
+       
+    }
+
     public void GameOver()
     {
+        gameStarted = false;
         Debug.Log("Game Over");
         uiManager.setRestart();
         uiManager.setExit();
