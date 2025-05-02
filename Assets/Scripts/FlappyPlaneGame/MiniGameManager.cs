@@ -16,9 +16,6 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
     UIManager uiManager;
     public UIManager UIManager { get { return uiManager; } }
 
-
-    
-
     public void Awake()
     {
         m_gameManager = this;
@@ -31,7 +28,6 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
         BsetScore = bestScore;
 
         uiManager.UpdateScore(0, BsetScore);
-       
     }
     public void GameOver()
     {
@@ -47,10 +43,8 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
 
     public void Exit()
     {
-        
         MasterGameManager.Instance.Resume();
         SceneManager.UnloadSceneAsync("Flappy Plane Scene");
-
     }
 
     public void AddScore(int score)
@@ -65,9 +59,5 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
             MasterGameManager.Instance.ReceiveMiniGameScore("FlappyPlane", BsetScore);
         }
         uiManager.UpdateScore(currentScore, BsetScore);
-
-        
     }
-
-
 }

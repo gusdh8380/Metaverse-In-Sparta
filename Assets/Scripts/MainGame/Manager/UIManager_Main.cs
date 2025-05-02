@@ -12,7 +12,7 @@ public class UIManager_Main : MonoBehaviour
     public TextMeshProUGUI FlappyScore;
     public TextMeshProUGUI FlappyText;
 
-    private int a;
+    private int flappy_BestScore;
 
     void Start()
     {
@@ -36,9 +36,9 @@ public class UIManager_Main : MonoBehaviour
     {
         if (MasterGameManager.Instance.miniGameScores.ContainsKey("FlappyPlane"))
         {
-            int a = MasterGameManager.Instance.miniGameScores["FlappyPlane"];
+            int flappy_BestScore = MasterGameManager.Instance.miniGameScores["FlappyPlane"];
 
-            FlappyScore.text = a.ToString();
+            FlappyScore.text = flappy_BestScore.ToString();
         }
         
     }

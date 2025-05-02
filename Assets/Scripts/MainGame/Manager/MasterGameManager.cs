@@ -6,12 +6,8 @@ using UnityEngine.SceneManagement;
 public class MasterGameManager : MonoBehaviour
 {
     public static MasterGameManager Instance;
-
     public Dictionary<string, int> miniGameScores = new Dictionary<string, int>();
-
-    private UIManager_Main ui;
-
-    private GameObject[] all;
+    private GameObject[] pauseRoots;
 
   
     private void Awake()
@@ -25,8 +21,8 @@ public class MasterGameManager : MonoBehaviour
     }
     public void Pause()
     {
-        all = SceneManager.GetActiveScene().GetRootGameObjects();
-        foreach (var obj in all)
+        pauseRoots = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (var obj in pauseRoots)
         {
             if (obj.name == "Main Camera" || obj.name == "DontDestroyOnLoad")
                 continue;
@@ -54,7 +50,7 @@ public class MasterGameManager : MonoBehaviour
     }
     public void Resume()
     {
-        foreach (var obj in all)
+        foreach (var obj in pauseRoots)
         {
             if (obj != null)
                 obj.SetActive(true);
@@ -84,7 +80,5 @@ public class MasterGameManager : MonoBehaviour
         // 3) È°¼º ¾À ÀüÈ¯
         var miniScene = SceneManager.GetSceneByName("Flappy Plane Scene");
         SceneManager.SetActiveScene(miniScene);
-    }
-
-   
+    } 
 }
