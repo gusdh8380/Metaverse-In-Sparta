@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager_Flappy : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public Button restart;

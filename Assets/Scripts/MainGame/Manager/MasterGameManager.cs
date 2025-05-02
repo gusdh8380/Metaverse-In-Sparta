@@ -12,7 +12,7 @@ public class MasterGameManager : MonoBehaviour
     private GameObject[] pauseRoots;
 
  
-    public string[] MiniGameSceneName = { "Flappy Plane Scene", "BoxStack Scene" };
+    public string[] MiniGameSceneName = { "Flappy Plane Scene", "Dungeon Scene" };
 
     public bool gameStart = false;
 

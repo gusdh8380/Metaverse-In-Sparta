@@ -13,13 +13,13 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
 
     private int BsetScore;
     public bool gameStarted = MasterGameManager.Instance.gameStart;
-    UIManager uiManager;
-    public UIManager UIManager { get { return uiManager; } }
+    UIManager_Flappy uiManager;
+    public UIManager_Flappy UIManager { get { return uiManager; } }
 
     public void Awake()
     {
         m_gameManager = this;
-        uiManager = FindObjectOfType<UIManager>();
+        uiManager = FindObjectOfType<UIManager_Flappy>();
     }
 
     public void Start()
