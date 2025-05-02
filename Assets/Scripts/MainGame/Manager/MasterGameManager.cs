@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class MasterGameManager : MonoBehaviour
 {
     public static MasterGameManager Instance;
     public Dictionary<string, int> miniGameScores = new Dictionary<string, int>();
     private GameObject[] pauseRoots;
 
-  
+ 
+    public string[] MiniGameSceneName = { "Flappy Plane Scene", "BoxStack Scene" };
+
+    
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -18,6 +25,8 @@ public class MasterGameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
+
+        Debug.Log(MiniGameSceneName[0]);
     }
     public void Pause()
     {
@@ -35,7 +44,7 @@ public class MasterGameManager : MonoBehaviour
     {
         miniGameScores[gameId] = score;
         Debug.Log($"[{gameId}] 점수 수신: {score}");
-        Debug.Log(MasterGameManager.Instance.miniGameScores["FlappyPlane"]);
+        
     }
 
     public int GetMiniGameScore(string gameId)
@@ -57,28 +66,28 @@ public class MasterGameManager : MonoBehaviour
         }
     }
 
-    public void LoadMiniGame()
+    public void LoadMiniGame(string scnenName)
     {
-        SceneManager.LoadSceneAsync("Flappy Plane Scene", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(scnenName, LoadSceneMode.Additive);
     }
 
-    public void MasterRestartGame()
+    public void MasterRestartGame(string sceneName)
     {
-        MasterGameManager.Instance.StartCoroutine(ReloadMiniGame());
+        MasterGameManager.Instance.StartCoroutine(ReloadMiniGame(sceneName));
     }
 
-    private IEnumerator ReloadMiniGame()
+    private IEnumerator ReloadMiniGame(string s)
     {
         // 1) 언로드
-        var unload = SceneManager.UnloadSceneAsync("Flappy Plane Scene");
+        var unload = SceneManager.UnloadSceneAsync(s);
         yield return unload;
 
         // 2) 재로드
-        var load = SceneManager.LoadSceneAsync("Flappy Plane Scene", LoadSceneMode.Additive);
+        var load = SceneManager.LoadSceneAsync(s, LoadSceneMode.Additive);
         yield return load;
 
         // 3) 활성 씬 전환
-        var miniScene = SceneManager.GetSceneByName("Flappy Plane Scene");
+        var miniScene = SceneManager.GetSceneByName(s);
         SceneManager.SetActiveScene(miniScene);
     } 
 }

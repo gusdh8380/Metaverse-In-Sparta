@@ -38,7 +38,7 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
 
     public void RestartGame()
     {
-        MasterGameManager.Instance.MasterRestartGame(); 
+        MasterGameManager.Instance.MasterRestartGame("Flappy Plane Scene"); 
     }
 
     public void Exit()
