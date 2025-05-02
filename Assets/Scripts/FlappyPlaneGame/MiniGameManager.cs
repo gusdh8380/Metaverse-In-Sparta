@@ -37,11 +37,6 @@ public class MiniGameManager : MonoBehaviour, IMiniGameManager
         MasterGameManager.Instance.MasterRestartGame(); 
     }
 
-    
-
-
-
-
     public void Exit()
     {
         //마스터게임 매니저에게 점수 데이터 전달
