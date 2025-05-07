@@ -10,6 +10,8 @@ public class GameOverUI : BaseUI
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
 
+    MiniGameManager1 m;
+
     public override void Init(UIManager_Dungeon uiManager)
     {
         base.Init(uiManager);
@@ -19,12 +21,12 @@ public class GameOverUI : BaseUI
 
     public void OnClickRestartButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        m.RestartGame(); 
     }
 
     public void OnClickExitButton()
     {
-        Application.Quit();
+        m.Exit();
     }
 
     protected override UIState GetUIState()

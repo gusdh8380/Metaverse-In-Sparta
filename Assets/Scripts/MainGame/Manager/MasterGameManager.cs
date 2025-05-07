@@ -27,6 +27,7 @@ public class MasterGameManager : MonoBehaviour
         else Destroy(gameObject);
 
         Debug.Log(MiniGameSceneName[0]);
+        Debug.Log(MiniGameSceneName[1]);
     }
     public void Pause()
     {

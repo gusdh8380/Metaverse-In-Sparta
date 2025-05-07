@@ -12,6 +12,10 @@ public class UIManager_Main : MonoBehaviour
     public TextMeshProUGUI FlappyScore;
     public TextMeshProUGUI FlappyText;
 
+    public TextMeshProUGUI DungeonScore;
+    public TextMeshProUGUI DungeonText;
+
+
     private int flappy_BestScore;
 
     void Start()
@@ -40,6 +44,12 @@ public class UIManager_Main : MonoBehaviour
 
             FlappyScore.text = flappy_BestScore.ToString();
         }
-        
+        if (MasterGameManager.Instance.miniGameScores.ContainsKey("Dungeon"))
+        {
+            int flappy_BestScore = MasterGameManager.Instance.miniGameScores["Dungeon"];
+
+            FlappyScore.text = flappy_BestScore.ToString();
+        }
+
     }
 }

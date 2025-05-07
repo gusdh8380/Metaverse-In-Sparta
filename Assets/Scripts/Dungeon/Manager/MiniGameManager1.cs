@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MiniGameManager1 : MonoBehaviour, IMiniGameManager
 {
@@ -12,6 +13,7 @@ public class MiniGameManager1 : MonoBehaviour, IMiniGameManager
     private EnemyManager enemyManager;
     private UIManager_Dungeon uiManager;
     public static bool isFirstLoading = true;
+    private int BsetScore;
 
     private void Awake()
     {
@@ -67,17 +69,23 @@ public class MiniGameManager1 : MonoBehaviour, IMiniGameManager
 
     public void AddScore()
     {
-
+        if (currentWaveIndex > BsetScore)
+        {
+            BsetScore = currentWaveIndex;
+            //마스터게임 매니저에게 점수 데이터 전달
+            MasterGameManager.Instance.ReceiveMiniGameScore("DunGeon", BsetScore);
+        }
     }
 
     public void Exit()
     {
-
+        MasterGameManager.Instance.Resume();
+        SceneManager.UnloadSceneAsync("Dungeon Scene");
     }
 
     public void RestartGame()
     {
-
+        MasterGameManager.Instance.MasterRestartGame("Dungeon Scene");
     }
 
     public void AddScore(int score)
