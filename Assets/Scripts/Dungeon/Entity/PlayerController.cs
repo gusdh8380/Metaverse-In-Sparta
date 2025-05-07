@@ -18,6 +18,8 @@ public class PlayerController : BaseController
         float vertical = Input.GetAxisRaw("Vertical");
         movementDirection = new Vector2(horizontal, vertical).normalized;
 
+        camera = Camera.main;
+
         Vector2 mousePosition = Input.mousePosition;
         Vector2 worldPos = camera.ScreenToWorldPoint(mousePosition);
         lookDirection = (worldPos - (Vector2)transform.position);

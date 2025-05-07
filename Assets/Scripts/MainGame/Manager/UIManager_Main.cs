@@ -34,6 +34,10 @@ public class UIManager_Main : MonoBehaviour
         {
             FlappyScore.text = "-";
         }
+        if(!MasterGameManager.Instance.miniGameScores.ContainsKey("Dungeon"))
+        {
+            DungeonScore.text = "-";
+        }
     }
 
     private void Update()
@@ -46,9 +50,9 @@ public class UIManager_Main : MonoBehaviour
         }
         if (MasterGameManager.Instance.miniGameScores.ContainsKey("Dungeon"))
         {
-            int flappy_BestScore = MasterGameManager.Instance.miniGameScores["Dungeon"];
+            int Dungeon_BestScore = MasterGameManager.Instance.miniGameScores["Dungeon"];
 
-            FlappyScore.text = flappy_BestScore.ToString();
+            DungeonScore.text = Dungeon_BestScore.ToString();
         }
 
     }

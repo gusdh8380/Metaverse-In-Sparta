@@ -12,7 +12,7 @@ public class MasterGameManager : MonoBehaviour
     private GameObject[] pauseRoots;
 
  
-    public string[] MiniGameSceneName = { "Flappy Plane Scene", "Dungeon Scene" };
+    public string[] MiniGameSceneName ;
 
     public bool gameStart = false;
 
@@ -25,6 +25,8 @@ public class MasterGameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
+        MiniGameSceneName[0] =  "Flappy Plane Scene";
+        MiniGameSceneName[1] =  "Dungeon Scene";
 
         Debug.Log(MiniGameSceneName[0]);
         Debug.Log(MiniGameSceneName[1]);
@@ -34,7 +36,7 @@ public class MasterGameManager : MonoBehaviour
         pauseRoots = SceneManager.GetActiveScene().GetRootGameObjects();
         foreach (var obj in pauseRoots)
         {
-            if (obj.name == "Main Camera" || obj.name == "DontDestroyOnLoad")
+            if (obj.name == "DontDestroyOnLoad")
                 continue;
             obj.SetActive(false);
         }
@@ -69,7 +71,14 @@ public class MasterGameManager : MonoBehaviour
 
     public void LoadMiniGame(string scnenName)
     {
-        SceneManager.LoadSceneAsync(scnenName, LoadSceneMode.Additive);
+        var op = SceneManager.LoadSceneAsync(scnenName, LoadSceneMode.Additive);
+        op.completed += _ =>
+        {
+            // 씬 로드가 끝난 뒤 Active Scene으로 지정
+            var mini = SceneManager.GetSceneByName(scnenName);
+            if (mini.IsValid())
+                SceneManager.SetActiveScene(mini);
+        };
     }
 
     public void MasterRestartGame(string sceneName)

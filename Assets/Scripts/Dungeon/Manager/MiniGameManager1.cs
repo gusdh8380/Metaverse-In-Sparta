@@ -12,8 +12,9 @@ public class MiniGameManager1 : MonoBehaviour, IMiniGameManager
 
     private EnemyManager enemyManager;
     private UIManager_Dungeon uiManager;
-    public static bool isFirstLoading = true;
+   
     private int BsetScore;
+    public bool gameStarted = MasterGameManager.Instance.gameStart;
 
     private void Awake()
     {
@@ -33,18 +34,18 @@ public class MiniGameManager1 : MonoBehaviour, IMiniGameManager
 
     private void Start()
     {
-        if (!isFirstLoading)
-        {
-            StartGame();
-        }
-        else
-        {
-            isFirstLoading = false;
-        }
+        uiManager.SetStartGame();
+        Time.timeScale = 0f;
+    }
+    private void Update()
+    {
+        AddScore(currentWaveIndex);
     }
 
     public void StartGame()
     {
+        gameStarted = true;
+        Time.timeScale = 1f;
         uiManager.SetPlayGame();
         StartNextWave();
     }
@@ -59,28 +60,32 @@ public class MiniGameManager1 : MonoBehaviour, IMiniGameManager
     public void EndOfWave()
     {
         StartNextWave();
+       
     }
 
     public void GameOver()
     {
+        gameStarted =false;
         enemyManager.StopWave();
         uiManager.SetGameOver();
     }
 
-    public void AddScore()
+    public void AddScore(int score)
     {
-        if (currentWaveIndex > BsetScore)
+        if (score > BsetScore)
         {
-            BsetScore = currentWaveIndex;
+            BsetScore = score;
             //마스터게임 매니저에게 점수 데이터 전달
-            MasterGameManager.Instance.ReceiveMiniGameScore("DunGeon", BsetScore);
+            MasterGameManager.Instance.ReceiveMiniGameScore("Dungeon", BsetScore);
         }
     }
 
     public void Exit()
     {
+        Time.timeScale = 1f;
         MasterGameManager.Instance.Resume();
         SceneManager.UnloadSceneAsync("Dungeon Scene");
+        
     }
 
     public void RestartGame()
@@ -88,8 +93,5 @@ public class MiniGameManager1 : MonoBehaviour, IMiniGameManager
         MasterGameManager.Instance.MasterRestartGame("Dungeon Scene");
     }
 
-    public void AddScore(int score)
-    {
-
-    }
+  
 }

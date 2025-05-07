@@ -27,9 +27,12 @@ public class UIManager_Dungeon : MonoBehaviour
         gameOverUI = GetComponentInChildren<GameOverUI>(true);
         gameOverUI.Init(this);
 
+       
+    }
+    public void SetStartGame()
+    {
         ChangeState(UIState.Home);
     }
-
     public void SetPlayGame()
     {
         ChangeState(UIState.Game);

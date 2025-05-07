@@ -22,7 +22,7 @@ public class HomeUI : BaseUI
 
     public void OnClickExitButton()
     {
-        Application.Quit();
+        MiniGameManager1.instance.Exit();
     }
 
     protected override UIState GetUIState()

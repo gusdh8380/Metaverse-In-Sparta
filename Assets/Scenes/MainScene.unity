@@ -9580,7 +9580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MiniGameSceneName:
   - Flappy Plane Scene
-  - BoxStack Scene
+  - Dungeon Scene
   gameStart: 0
 --- !u!4 &928754868
 Transform:
