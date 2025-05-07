@@ -24,8 +24,3 @@ Unity 기반의 메인 씬에서 다양한 미니게임으로 진입할 수 있�
 - **커스텀 캐릭터**
   - UI 메뉴를 통해 커스텀 캐릭터 장착 가능
 
-## ⚙️ 설치 및 실행 방법
-1. Unity 2021.3 LTS (또는 2020.3 LTS) 이상 버전 설치  
-2. 본 레포지토리 클론  
-   ```bash
-   git clone https://github.com/USERNAME/InteractiveMiniGameHub.git
