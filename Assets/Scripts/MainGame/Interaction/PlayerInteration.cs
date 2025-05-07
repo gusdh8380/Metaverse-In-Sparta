@@ -30,10 +30,27 @@ public class PlayerInteration : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F) )
-        {
-            animator.SetTrigger("Isinteract");
-            Debug.Log("상호작용");
-            currentTarget.GetComponent<IInteraction>()?.Interact();
+        {      
+            if (currentTarget != null)
+            {
+                animator.SetTrigger("Isinteract");
+                Debug.Log("상호작용");
+
+           
+                var interaction = currentTarget.GetComponent<IInteraction>();
+                if (interaction != null)
+                {
+                    interaction.Interact();
+                }
+                else
+                {
+                    Debug.LogWarning("상호작용 대상에 IInteraction 컴포넌트가 없습니다.");
+                }
+            }
+            else
+            {          
+                Debug.Log("상호작용 대상 없음");
+            }
         }
     }
 }
