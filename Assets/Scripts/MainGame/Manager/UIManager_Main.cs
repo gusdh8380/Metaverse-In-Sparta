@@ -16,7 +16,7 @@ public class UIManager_Main : MonoBehaviour
     public TextMeshProUGUI DungeonText;
 
 
-    private int flappy_BestScore;
+  
 
     void Start()
     {

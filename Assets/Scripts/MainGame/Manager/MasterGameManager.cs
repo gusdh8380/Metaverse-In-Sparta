@@ -30,6 +30,21 @@ public class MasterGameManager : MonoBehaviour
 
         Debug.Log(MiniGameSceneName[0]);
         Debug.Log(MiniGameSceneName[1]);
+
+        miniGameScores.Add("FlappyPlane", 0);
+        miniGameScores.Add("Dungeon", 0);
+
+        if (GetHighScore("FlappyPlane") != 0)
+        {
+            miniGameScores["FlappyPlane"] = GetHighScore("FlappyPlane");
+            Debug.Log(GetHighScore("FlappyPlane"));
+        }
+        if(GetHighScore("Dungeon") != 0)
+        {
+            miniGameScores["Dungeon"] = GetHighScore("Dungeon");
+            Debug.Log(miniGameScores["Dungeon"]);
+        }
+
     }
     public void Pause()
     {
@@ -41,12 +56,28 @@ public class MasterGameManager : MonoBehaviour
             obj.SetActive(false);
         }
     }
+    public void SaveHighScore(string miniGameName, int score)
+    {
+        int currentHigh = PlayerPrefs.GetInt(miniGameName, 0);
+        if (score > currentHigh)
+        {
+            PlayerPrefs.SetInt(miniGameName, score);
+            PlayerPrefs.Save();
+            Debug.Log($"저장 : [{miniGameName}] 점수 수신: {score}");
+        }
+    }
+    public int GetHighScore(string miniGameName)
+    {
+        return PlayerPrefs.GetInt(miniGameName, 0);
+    }
 
 
     public void ReceiveMiniGameScore(string gameId, int score)
     {
         miniGameScores[gameId] = score;
         Debug.Log($"[{gameId}] 점수 수신: {score}");
+
+        SaveHighScore(gameId, score);
         
     }
 
